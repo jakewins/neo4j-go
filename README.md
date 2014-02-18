@@ -2,7 +2,7 @@
 
 An experimental Neo4j driver for the Go language. It sports a transactional API, and supports Cypher only.
 
-## IMPORTANT: Relation to Neo4j project
+### IMPORTANT: Relation to Neo4j project
 
 While I work for Neo Technology, this is a personal project. While I am happy for you to use and
 benefit from it, the project is maintained by a single developer on weekends, and it is still 
