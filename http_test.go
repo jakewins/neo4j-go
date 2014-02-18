@@ -10,25 +10,28 @@ import (
 
 
 func ExampleUsage() {
-    // This should be a single instance per application
+    // You'll generally want a single driver instance per Neo4j database used
+    // by your application.
     drive, _ := neo4j.NewDriver("http://localhost:7474")
 
-    // This can, if you want, be pooled and re-used, although we use TCP 
+    // The driver allows you to create database Sessions
+    // Sessions can, if you want, be pooled and re-used, although we use TCP 
     // connection pooling by default even if you don't reuse sessions. That 
     // is not guaranteed in future versions though.
     sess,_ := drive.NewSession()
 
-    // This denotes an atomic transaction against Neo4j
+    // Sessions allow you to create transactions
     tx,_ := sess.NewTransaction()
  
-    // Run a statement without parameters like this
+    // Run a Cypher statement like this
     res,_ := tx.Execute("CREATE (n) RETURN id(n)")
 
-    // Loop through the result like below. Next forwards the result cursor, 
-    // and starts at -1. It returns true if there was another row in the result.
+    // Loop through the result like below. Next() forwards the result cursor, 
+    // which starts at -1. It returns true if there was another row in the result.
+    var id int64
     for res.Next() {
         // Once we're on a row, we can read the columns in it
-        id := res.GetInt("id(n)")
+        id = res.GetInt("id(n)")
     }
 
     // And it's considered good form to close the result when you're done.
