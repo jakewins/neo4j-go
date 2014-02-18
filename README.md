@@ -2,6 +2,10 @@
 
 An experimental Neo4j driver for the Go language. It sports a transactional API, and supports Cypher only.
 
+If you want a less experimental driver, and one that supports the built in Go database/sql API, see here:
+
+https://github.com/wfreeman/cq
+
 ### IMPORTANT: Relation to Neo4j project
 
 While I work for Neo Technology, this is a personal project. While I am happy for you to use and
